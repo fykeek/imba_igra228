@@ -1,0 +1,193 @@
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13180, функция: HBRUSH__* {anonymous}::TX::txSetFillColor(COLORREF, HDC),
+
+Сообщение: Окно рисования не создано или не в порядке.
+Если вы указали параметр "dc", то он неверен.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005042FC (32-bit), Flags: Cmdre0, Thread: 0x1A8C (Main). 
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x0041CC40 in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: txSetFillColor() at c:/codeblocks/codeblocks/mingw/include/txlib.h (13180)
+
+# 1 0x0042BAEF in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: main() at D:/ЛМ igra/imba_igra228/main.cpp (15):
+
+     13:     while (!GetAsyncKeyState (VK_ESCAPE)) {
+     14: 
+=>   15:         txSetFillColor (TX_BLACK);
+     16:         txClear();
+     17:         txBegin;
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in HBRUSH__* {anonymous}::TX::txSetFillColor(COLORREF, HDC) at c:\codeblocks\codeblocks\mingw\include\txlib.h (13180):
+
+  13178: HBRUSH txSetFillColor (COLORREF color, HDC dc /*= txDC()*/)
+  13179:     {
+=>13180: $1  if (_TX_DEFAULT_HDC_FAILED (dc)) return NULL;
+  13181: 
+  13182: $   HBRUSH brush = (color == TX_TRANSPARENT)? (HBRUSH) Win32::GetStockObject (HOLLOW_BRUSH) : Win32::CreateSolidBrush (color);
+
+# 1 in int main() at D:\ЛМ igra\imba_igra228\main.cpp (15):
+
+     13:     while (!GetAsyncKeyState (VK_ESCAPE)) {
+     14: 
+=>   15:         txSetFillColor (TX_BLACK);
+     16:         txClear();
+     17:         txBegin;
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Jan 15 2024 17:48:10, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Jan 15 2024 17:48:30
+
+Run file:	D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe
+Directory:	D:\ЛМ igra\imba_igra228
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13678, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {0, 0, 300, 168} не полностью лежит внутри изображения-источника {0, 0, 150, 84}, функция txTransparentBlt() работать не будет.
+
+#1: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005042FC (32-bit), Flags: CMdRe0, Thread: 0x3564 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h (13677) bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004228EC in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: txTransparentBlt() at c:/codeblocks/codeblocks/mingw/include/txlib.h (13678)
+
+# 1 0x0042BA38 in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: FITH() at D:/ЛМ igra/imba_igra228/main.cpp (4):
+
+      2: 
+      3: void FITH (HDC fire, int x, int y) {
+=>    4:      txTransparentBlt(txDC(), x, y, 300, 168, fire);
+      5: }
+      6: 
+
+# 2 0x0042BB6F in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: main() at D:/ЛМ igra/imba_igra228/main.cpp (21):
+
+     19:         txBegin;
+     20: 
+=>   21:         FITH(fire, x1, y1);
+     22: 
+     23:         if (GetAsyncKeyState('W')) {
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h (13677):
+
+  13675:         {
+  13676: $       SetLastError (ERROR_INVALID_DATA);
+=>13677: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13678:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13679:         }
+
+# 1 in void FITH(HDC, int, int) at D:\ЛМ igra\imba_igra228\main.cpp (4):
+
+      2: 
+      3: void FITH (HDC fire, int x, int y) {
+=>    4:      txTransparentBlt(txDC(), x, y, 300, 168, fire);
+      5: }
+      6: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Jan 15 2024 17:51:23, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Jan 15 2024 17:51:43
+
+Run file:	D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe
+Directory:	D:\ЛМ igra\imba_igra228
+
+--------------------------------------------------
+
+--------------------------------------------------
+TXLib сообщает:
+
+Программа: D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe, файл: c:\codeblocks\codeblocks\mingw\include\txlib.h, строка: 13678, функция: bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF),
+
+Сообщение: Прямоугольник копируемой области {0, 0, 300, 168} не полностью лежит внутри изображения-источника {0, 0, 150, 84}, функция txTransparentBlt() работать не будет.
+
+#2: TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400], Instance: 0x005042FC (32-bit), Flags: CMdRe0, Thread: 0x3564 (Main), GetLastError(): 13 (Недопустимые данные). 
+From: c:\codeblocks\codeblocks\mingw\include\txlib.h (13677) bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF).
+
+--------------------------------------------------
+Стек вызовов:
+
+# 0 0x004228EC in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: txTransparentBlt() at c:/codeblocks/codeblocks/mingw/include/txlib.h (13678)
+
+# 1 0x0042BA38 in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: FITH() at D:/ЛМ igra/imba_igra228/main.cpp (4):
+
+      2: 
+      3: void FITH (HDC fire, int x, int y) {
+=>    4:      txTransparentBlt(txDC(), x, y, 300, 168, fire);
+      5: }
+      6: 
+
+# 2 0x0042BB6F in D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe: main() at D:/ЛМ igra/imba_igra228/main.cpp (21):
+
+     19:         txBegin;
+     20: 
+=>   21:         FITH(fire, x1, y1);
+     22: 
+     23:         if (GetAsyncKeyState('W')) {
+
+--------------------------------------------------
+Стек вызовов TX:
+
+# 0 in bool {anonymous}::TX::txTransparentBlt(HDC, double, double, double, double, HDC, double, double, COLORREF) at c:\codeblocks\codeblocks\mingw\include\txlib.h (13677):
+
+  13675:         {
+  13676: $       SetLastError (ERROR_INVALID_DATA);
+=>13677: $       TX_ERROR ("Прямоугольник копируемой области {%g, %g, %g, %g} не полностью лежит внутри изображения-источника {%d, %d, %d, %d}, "
+  13678:                   "функция txTransparentBlt() работать не будет.", xSource, ySource, xSource + width, ySource + height, 0, 0, (int) size.x, (int) size.y);
+  13679:         }
+
+# 1 in void FITH(HDC, int, int) at D:\ЛМ igra\imba_igra228\main.cpp (4):
+
+      2: 
+      3: void FITH (HDC fire, int x, int y) {
+=>    4:      txTransparentBlt(txDC(), x, y, 300, 168, fire);
+      5: }
+      6: 
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 171, Date: 2022-07-23 02:08:28 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\codeblocks\codeblocks\mingw\include\txlib.h
+Compiled:	Jan 15 2024 17:51:23, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Jan 15 2024 17:51:42
+
+Run file:	D:\ЛМ igra\imba_igra228\bin\Debug\imba_igra228.exe
+Directory:	D:\ЛМ igra\imba_igra228
+
+--------------------------------------------------
